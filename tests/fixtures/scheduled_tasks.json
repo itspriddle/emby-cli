@@ -1,0 +1,41 @@
+[
+  {
+    "Name": "Scan Media Library",
+    "State": "Idle",
+    "Id": "task-001",
+    "Description": "Scans all libraries for new content",
+    "Category": "Library",
+    "IsHidden": false,
+    "LastExecutionResult": {
+      "StartTimeUtc": "2024-06-15T02:00:00.0000000Z",
+      "EndTimeUtc": "2024-06-15T02:15:00.0000000Z",
+      "Status": "Completed"
+    }
+  },
+  {
+    "Name": "Download Subtitles",
+    "State": "Idle",
+    "Id": "task-002",
+    "Description": "Downloads missing subtitles",
+    "Category": "Library",
+    "IsHidden": false,
+    "LastExecutionResult": {
+      "StartTimeUtc": "2024-06-15T03:00:00.0000000Z",
+      "EndTimeUtc": "2024-06-15T03:05:00.0000000Z",
+      "Status": "Completed"
+    }
+  },
+  {
+    "Name": "Clean Cache",
+    "State": "Idle",
+    "Id": "task-003",
+    "Description": "Clears old cached data",
+    "Category": "Maintenance",
+    "IsHidden": true,
+    "LastExecutionResult": {
+      "StartTimeUtc": "2024-06-14T04:00:00.0000000Z",
+      "EndTimeUtc": "2024-06-14T04:01:00.0000000Z",
+      "Status": "Completed"
+    }
+  }
+]

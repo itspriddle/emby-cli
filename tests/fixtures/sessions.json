@@ -1,0 +1,50 @@
+[
+  {
+    "UserName": "josh",
+    "DeviceName": "Apple TV",
+    "Client": "Infuse 7",
+    "RemoteEndPoint": "192.168.1.100",
+    "NowPlayingItem": {
+      "Name": "The One Where No One's Ready",
+      "Type": "Episode",
+      "SeriesName": "Friends",
+      "ParentIndexNumber": 3,
+      "IndexNumber": 2,
+      "RunTimeTicks": 14400000000,
+      "PremiereDate": "1996-09-26T00:00:00.0000000Z",
+      "OfficialRating": "TV-PG",
+      "Overview": "Ross has an important event and everyone is running late."
+    },
+    "PlayState": {
+      "PositionTicks": 7200000000,
+      "IsPaused": false,
+      "PlayMethod": "DirectPlay"
+    }
+  },
+  {
+    "UserName": "bob",
+    "DeviceName": "iPhone",
+    "Client": "Emby Mobile",
+    "RemoteEndPoint": "192.168.1.50",
+    "NowPlayingItem": {
+      "Name": "Bohemian Rhapsody",
+      "Type": "Audio",
+      "Album": "A Night at the Opera",
+      "AlbumArtist": "Queen",
+      "IndexNumber": 11,
+      "RunTimeTicks": 3540000000,
+      "ProductionYear": 1975
+    },
+    "PlayState": {
+      "PositionTicks": 1770000000,
+      "IsPaused": true,
+      "PlayMethod": "Transcode"
+    }
+  },
+  {
+    "UserName": "idle",
+    "DeviceName": "Browser",
+    "Client": "Emby Web",
+    "RemoteEndPoint": "192.168.1.200"
+  }
+]

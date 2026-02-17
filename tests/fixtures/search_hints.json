@@ -1,0 +1,31 @@
+{
+  "SearchHints": [
+    {
+      "ItemId": 1001,
+      "Name": "The One Where No One's Ready",
+      "Type": "Episode",
+      "ProductionYear": 1996,
+      "Series": "Friends",
+      "IndexNumber": 2,
+      "ParentIndexNumber": 3,
+      "RunTimeTicks": 14400000000
+    },
+    {
+      "ItemId": 1002,
+      "Name": "Bohemian Rhapsody",
+      "Type": "Audio",
+      "ProductionYear": 1975,
+      "Album": "A Night at the Opera",
+      "AlbumArtist": "Queen",
+      "IndexNumber": 11,
+      "RunTimeTicks": 3540000000
+    },
+    {
+      "ItemId": 1003,
+      "Name": "The Matrix",
+      "Type": "Movie",
+      "ProductionYear": 1999,
+      "RunTimeTicks": 81600000000
+    }
+  ]
+}
