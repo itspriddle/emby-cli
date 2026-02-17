@@ -4,6 +4,18 @@ A command-line interface for [Emby](https://emby.media) media servers.
 
 ## Installation
 
+### Homebrew
+
+```sh
+brew install itspriddle/brew/emby-cli
+```
+
+### GitHub Releases
+
+Download the latest binary for your platform from the [releases page](https://github.com/itspriddle/emby-cli/releases/latest) and extract it to a directory in your `$PATH`.
+
+### From source
+
 Requires Rust 1.85+.
 
 ```sh
