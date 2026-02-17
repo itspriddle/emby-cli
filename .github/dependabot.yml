@@ -1,11 +1,11 @@
 version: 2
 updates:
-  - package-ecosystem: "swift"
+  - package-ecosystem: "cargo"
     directory: "/"
     schedule:
       interval: "weekly"
     groups:
-      swift-dependencies:
+      rust-dependencies:
         patterns:
           - "*"
 
