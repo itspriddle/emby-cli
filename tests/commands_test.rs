@@ -159,9 +159,10 @@ fn search_shows_results() {
     let mut server = mockito::Server::new();
     let body = load_fixture("search_hints.json");
     let _mock = server
-        .mock("GET", "/emby/Search/Hints")
+        .mock("GET", "/emby/Items")
         .match_query(mockito::Matcher::AllOf(vec![
             mockito::Matcher::UrlEncoded("SearchTerm".into(), "friends".into()),
+            mockito::Matcher::UrlEncoded("Recursive".into(), "true".into()),
             mockito::Matcher::UrlEncoded("Limit".into(), "25".into()),
         ]))
         .with_body(&body)
@@ -181,9 +182,9 @@ fn search_shows_results() {
 fn search_no_results() {
     let mut server = mockito::Server::new();
     let _mock = server
-        .mock("GET", "/emby/Search/Hints")
+        .mock("GET", "/emby/Items")
         .match_query(mockito::Matcher::Any)
-        .with_body(r#"{"SearchHints": []}"#)
+        .with_body(r#"{"Items": [], "TotalRecordCount": 0}"#)
         .with_header("content-type", "application/json")
         .create();
 

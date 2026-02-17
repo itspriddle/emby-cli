@@ -98,30 +98,6 @@ pub struct ActivityLogEntry {
     pub severity: Option<String>,
 }
 
-// --- Search ---
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "PascalCase")]
-pub struct SearchHintResponse {
-    pub search_hints: Option<Vec<SearchHint>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "PascalCase")]
-pub struct SearchHint {
-    pub item_id: Option<i64>,
-    pub name: Option<String>,
-    #[serde(rename = "Type")]
-    pub media_type: Option<String>,
-    pub production_year: Option<u32>,
-    pub series: Option<String>,
-    pub album: Option<String>,
-    pub album_artist: Option<String>,
-    pub index_number: Option<u32>,
-    pub parent_index_number: Option<u32>,
-    pub run_time_ticks: Option<i64>,
-}
-
 // --- BaseItemDto (shared by latest, next-up, upcoming) ---
 
 #[derive(Debug, Deserialize)]

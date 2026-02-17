@@ -1,8 +1,8 @@
 use std::path::PathBuf;
 
 use emby_cli::emby::types::{
-    ActivityLogResponse, BaseItemDto, DevicesResponse, QueryResultBaseItemDto, SearchHintResponse,
-    Session, SystemInfo, TaskInfo, User, VirtualFolder,
+    ActivityLogResponse, BaseItemDto, DevicesResponse, QueryResultBaseItemDto, Session, SystemInfo,
+    TaskInfo, User, VirtualFolder,
 };
 
 fn fixture_path(name: &str) -> PathBuf {
@@ -101,23 +101,23 @@ fn deserialize_activity_log() {
 #[test]
 fn deserialize_search_hints() {
     let data = load_fixture("search_hints.json");
-    let response: SearchHintResponse = serde_json::from_str(&data).unwrap();
-    let hints = response.search_hints.unwrap();
-    assert_eq!(hints.len(), 3);
+    let response: QueryResultBaseItemDto = serde_json::from_str(&data).unwrap();
+    let items = response.items.unwrap();
+    assert_eq!(items.len(), 3);
 
     // Episode
-    assert_eq!(hints[0].media_type.as_deref(), Some("Episode"));
-    assert_eq!(hints[0].series.as_deref(), Some("Friends"));
-    assert_eq!(hints[0].parent_index_number, Some(3));
-    assert_eq!(hints[0].index_number, Some(2));
+    assert_eq!(items[0].media_type.as_deref(), Some("Episode"));
+    assert_eq!(items[0].series_name.as_deref(), Some("Friends"));
+    assert_eq!(items[0].parent_index_number, Some(3));
+    assert_eq!(items[0].index_number, Some(2));
 
     // Audio
-    assert_eq!(hints[1].media_type.as_deref(), Some("Audio"));
-    assert_eq!(hints[1].album_artist.as_deref(), Some("Queen"));
+    assert_eq!(items[1].media_type.as_deref(), Some("Audio"));
+    assert_eq!(items[1].album_artist.as_deref(), Some("Queen"));
 
     // Movie
-    assert_eq!(hints[2].media_type.as_deref(), Some("Movie"));
-    assert_eq!(hints[2].item_id, Some(1003));
+    assert_eq!(items[2].media_type.as_deref(), Some("Movie"));
+    assert_eq!(items[2].id.as_deref(), Some("1003"));
 }
 
 #[test]
@@ -210,9 +210,9 @@ fn deserialize_session_without_play_state() {
 
 #[test]
 fn deserialize_empty_search_hints() {
-    let data = r#"{"SearchHints": []}"#;
-    let response: SearchHintResponse = serde_json::from_str(data).unwrap();
-    assert!(response.search_hints.unwrap().is_empty());
+    let data = r#"{"Items": [], "TotalRecordCount": 0}"#;
+    let response: QueryResultBaseItemDto = serde_json::from_str(data).unwrap();
+    assert!(response.items.unwrap().is_empty());
 }
 
 #[test]
