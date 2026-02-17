@@ -1,8 +1,8 @@
 use crate::cli::LatestArgs;
 use crate::client::Client;
 use crate::config::Config;
-use crate::emby::{ticks, users};
 use crate::emby::types::BaseItemDto;
+use crate::emby::{ticks, users};
 use crate::error::{Error, Result};
 use crate::format::table;
 
@@ -22,7 +22,11 @@ pub fn run(args: &LatestArgs) -> Result<()> {
         Some("movies") => Some("Movie"),
         Some("shows") => Some("Series"),
         Some("music") => Some("Audio"),
-        Some(other) => return Err(Error::Config(format!("Unknown type '{other}'. Use: movies, shows, music"))),
+        Some(other) => {
+            return Err(Error::Config(format!(
+                "Unknown type '{other}'. Use: movies, shows, music"
+            )));
+        }
         None => None,
     };
 
@@ -51,10 +55,7 @@ pub fn run(args: &LatestArgs) -> Result<()> {
         })
         .collect();
 
-    println!(
-        "{}",
-        table::build_table(&["Type", "Name", "Year"], rows)
-    );
+    println!("{}", table::build_table(&["Type", "Name", "Year"], rows));
 
     Ok(())
 }

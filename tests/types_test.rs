@@ -72,10 +72,7 @@ fn deserialize_system_info() {
     let info: SystemInfo = serde_json::from_str(&data).unwrap();
     assert_eq!(info.version.as_deref(), Some("4.8.0.0"));
     assert_eq!(info.server_name.as_deref(), Some("MediaServer"));
-    assert_eq!(
-        info.operating_system_display_name.as_deref(),
-        Some("Linux")
-    );
+    assert_eq!(info.operating_system_display_name.as_deref(), Some("Linux"));
     assert_eq!(info.has_update_available, Some(false));
 }
 

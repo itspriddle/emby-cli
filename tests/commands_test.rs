@@ -307,10 +307,7 @@ fn tasks_hides_hidden_by_default() {
         .with_header("content-type", "application/json")
         .create();
 
-    let output = emby_cmd(&server)
-        .arg("tasks")
-        .output()
-        .unwrap();
+    let output = emby_cmd(&server).arg("tasks").output().unwrap();
 
     let stdout = String::from_utf8(output.stdout).unwrap();
     assert!(stdout.contains("Scan Media Library"));
@@ -642,10 +639,7 @@ fn restart_sends_post() {
         .with_status(204)
         .create();
 
-    emby_cmd(&server)
-        .arg("restart")
-        .assert()
-        .success();
+    emby_cmd(&server).arg("restart").assert().success();
 }
 
 // --- Error cases ---

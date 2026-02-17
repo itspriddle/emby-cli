@@ -10,10 +10,8 @@ pub fn run(args: &ActivityArgs) -> Result<()> {
     let config = Config::load()?;
     let client = Client::new(&config);
     let limit = args.limit.to_string();
-    let response: ActivityLogResponse = client.get_with_query(
-        "/System/ActivityLog/Entries",
-        &[("Limit", limit.as_str())],
-    )?;
+    let response: ActivityLogResponse =
+        client.get_with_query("/System/ActivityLog/Entries", &[("Limit", limit.as_str())])?;
 
     let entries = response.items.unwrap_or_default();
 

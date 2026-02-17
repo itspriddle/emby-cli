@@ -30,9 +30,7 @@ pub fn run(args: &SearchArgs) -> Result<()> {
             let year = h
                 .production_year
                 .map_or_else(String::new, |y| y.to_string());
-            let id = h
-                .item_id
-                .map_or_else(String::new, |id| id.to_string());
+            let id = h.item_id.map_or_else(String::new, |id| id.to_string());
 
             vec![media_type, name, year, id]
         })

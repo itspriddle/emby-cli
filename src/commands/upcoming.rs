@@ -1,8 +1,8 @@
 use crate::cli::UpcomingArgs;
 use crate::client::Client;
 use crate::config::Config;
-use crate::emby::{ticks, users};
 use crate::emby::types::QueryResultBaseItemDto;
+use crate::emby::{ticks, users};
 use crate::error::Result;
 use crate::format::table;
 
