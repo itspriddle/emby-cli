@@ -105,6 +105,10 @@ pub struct PlayingArgs {
     #[arg(short, long, group = "format")]
     pub raw: bool,
 
+    /// Watch mode: re-poll every N seconds (default: 60, minimum: 5)
+    #[arg(short, long, conflicts_with_all = ["json", "raw"], num_args = 0..=1, default_missing_value = "60", value_parser = clap::value_parser!(u64).range(5..))]
+    pub watch: Option<u64>,
+
     /// Filter by user names
     pub users: Vec<String>,
 }
