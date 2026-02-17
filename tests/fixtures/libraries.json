@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Movies",
+    "CollectionType": "movies",
+    "ItemId": "lib-001"
+  },
+  {
+    "Name": "TV Shows",
+    "CollectionType": "tvshows",
+    "ItemId": "lib-002"
+  },
+  {
+    "Name": "Music",
+    "CollectionType": "music",
+    "ItemId": "lib-003"
+  },
+  {
+    "Name": "Photos",
+    "CollectionType": "photos",
+    "ItemId": "lib-004"
+  }
+]

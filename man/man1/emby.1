@@ -1,0 +1,191 @@
+.TH EMBY 1 "2026-02-16" "emby 0.1.0" "User Commands"
+.SH NAME
+emby \- command-line interface for Emby Media Server
+.SH SYNOPSIS
+.B emby
+.I command
+.RI [ options ]
+.SH DESCRIPTION
+.B emby
+is a CLI tool for interacting with an Emby Media Server.
+It can display playback status, manage library scans, list users and devices,
+search the library, and more.
+.SH COMMANDS
+.TP
+.B playing \fR[\fB\-p\fR|\fB\-j\fR|\fB\-r\fR] [\fIuser\fR ...]
+Show what's currently playing.
+With
+.BR \-p ", " \-\-plain
+disable colorized output.
+With
+.BR \-j ", " \-\-json
+output results as JSON.
+With
+.BR \-r ", " \-\-raw
+output the raw JSON payload from the Emby API.
+Optionally filter by one or more user names.
+.TP
+.B scan \fR[\fIlibrary\fR ...]
+Trigger library scans.
+Accepts library types:
+.BR shows ", " movies ", " music ", or " all
+(default:
+.BR all ).
+.RS
+.TP
+.BR \-r ", " \-\-recursive
+Recursively scan directories (default).
+.TP
+.BR \-R ", " \-\-no\-recursive
+Disable recursive scanning.
+.TP
+.B \-\-metadata\-refresh\-mode \fImode\fR
+Metadata refresh mode (default: Default).
+.TP
+.B \-\-image\-refresh\-mode \fImode\fR
+Image refresh mode (default: Default).
+.TP
+.B \-\-replace\-all\-metadata
+Replace all metadata.
+.TP
+.B \-\-replace\-all\-images
+Replace all images.
+.RE
+.TP
+.B restart
+Restart the Emby server.
+.TP
+.B system
+Show system information.
+.TP
+.B users
+List users.
+.TP
+.B devices
+List devices.
+.TP
+.B libraries
+List libraries.
+.TP
+.B find\-server \fR[\fB\-t\fR \fIseconds\fR]
+Find Emby servers on the local network via UDP discovery.
+.RS
+.TP
+.BR \-t ", " \-\-timeout " " \fIseconds\fR
+Discovery timeout in seconds (default: 3).
+.RE
+.TP
+.B activity \fR[\fB\-l\fR \fIcount\fR]
+Show recent activity log.
+.RS
+.TP
+.BR \-l ", " \-\-limit " " \fIcount\fR
+Maximum number of entries to show (default: 25).
+.RE
+.TP
+.B latest \fR[\fB\-l\fR \fIcount\fR] [\fB\-t\fR \fItype\fR] [\fB\-u\fR \fIuser\fR]
+Show recently added media.
+.RS
+.TP
+.BR \-l ", " \-\-limit " " \fIcount\fR
+Maximum number of items to show (default: 20).
+.TP
+.BR \-t ", " \-\-type " " \fItype\fR
+Filter by type:
+.BR movies ", " shows ", or " music .
+.TP
+.BR \-u ", " \-\-user " " \fIname\fR
+User name (defaults to first admin user).
+.RE
+.TP
+.B search \fR[\fB\-l\fR \fIcount\fR] \fIquery\fR
+Search the library.
+.RS
+.TP
+.BR \-l ", " \-\-limit " " \fIcount\fR
+Maximum number of results (default: 25).
+.RE
+.TP
+.B next\-up \fR[\fB\-l\fR \fIcount\fR] [\fB\-u\fR \fIuser\fR]
+Show next episodes to watch.
+.RS
+.TP
+.BR \-l ", " \-\-limit " " \fIcount\fR
+Maximum number of items to show (default: 20).
+.TP
+.BR \-u ", " \-\-user " " \fIname\fR
+User name (defaults to first admin user).
+.RE
+.TP
+.B upcoming \fR[\fB\-l\fR \fIcount\fR] [\fB\-u\fR \fIuser\fR]
+Show upcoming TV episodes.
+.RS
+.TP
+.BR \-l ", " \-\-limit " " \fIcount\fR
+Maximum number of items to show (default: 20).
+.TP
+.BR \-u ", " \-\-user " " \fIname\fR
+User name (defaults to first admin user).
+.RE
+.TP
+.B tasks \fR[\fB\-a\fR]
+List scheduled tasks.
+.RS
+.TP
+.BR \-a ", " \-\-all
+Show hidden tasks.
+.RE
+.TP
+.B tasks run \fIid\fR
+Run a scheduled task by ID.
+.SH CONFIGURATION
+.B emby
+reads configuration from a JSON file or environment variables.
+.SS Environment Variables
+.TP
+.B EMBY_API_URL
+The base URL of the Emby server (e.g., http://emby.local:8096).
+.TP
+.B EMBY_API_KEY
+The API key for authenticating with the Emby server.
+.PP
+If both environment variables are set and non-empty, they take precedence
+over the configuration file.
+.SS Configuration File
+If environment variables are not set, configuration is read from a JSON file at:
+.PP
+.RS
+.B $EMBY_CONFIG
+if set, otherwise
+.B $XDG_CONFIG_HOME/emby\-api.json
+(default:
+.BR ~/.config/emby\-api.json ).
+.RE
+.PP
+The file must contain:
+.PP
+.RS
+.nf
+{
+  "api_url": "http://emby.local:8096",
+  "api_key": "your-api-key-here"
+}
+.fi
+.RE
+.PP
+It is recommended to restrict permissions on this file:
+.PP
+.RS
+.B chmod 600 ~/.config/emby\-api.json
+.RE
+.SH EXIT STATUS
+.TP
+.B 0
+Success.
+.TP
+.B 1
+An error occurred (configuration error, network failure, API error, etc.).
+.SH AUTHORS
+Joshua Priddle <jpriddle@me.com>
+.SH LICENSE
+MIT

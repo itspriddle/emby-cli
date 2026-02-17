@@ -1,0 +1,33 @@
+[
+  {
+    "Name": "Inception",
+    "Id": "item-001",
+    "Type": "Movie",
+    "ProductionYear": 2010,
+    "PremiereDate": "2010-07-16T00:00:00.0000000Z",
+    "DateCreated": "2024-06-10T12:00:00.0000000Z",
+    "RunTimeTicks": 88800000000,
+    "Overview": "A thief who steals corporate secrets through dream-sharing technology.",
+    "OfficialRating": "PG-13"
+  },
+  {
+    "Name": "The One Where Everybody Finds Out",
+    "Id": "item-002",
+    "Type": "Episode",
+    "SeriesName": "Friends",
+    "IndexNumber": 14,
+    "ParentIndexNumber": 5,
+    "ProductionYear": 1999,
+    "PremiereDate": "1999-02-11T00:00:00.0000000Z",
+    "RunTimeTicks": 13200000000
+  },
+  {
+    "Name": "Stairway to Heaven",
+    "Id": "item-003",
+    "Type": "Audio",
+    "Album": "Led Zeppelin IV",
+    "AlbumArtist": "Led Zeppelin",
+    "ProductionYear": 1971,
+    "RunTimeTicks": 4820000000
+  }
+]

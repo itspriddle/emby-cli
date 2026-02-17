@@ -1,0 +1,20 @@
+{
+  "Items": [
+    {
+      "Name": "Apple TV",
+      "IpAddress": "192.168.1.100",
+      "LastUserName": "josh",
+      "AppName": "Infuse",
+      "AppVersion": "7.5",
+      "Id": "device-001"
+    },
+    {
+      "Name": "iPhone",
+      "IpAddress": "192.168.1.50",
+      "LastUserName": "bob",
+      "AppName": "Emby Mobile",
+      "AppVersion": "3.0",
+      "Id": "device-002"
+    }
+  ]
+}

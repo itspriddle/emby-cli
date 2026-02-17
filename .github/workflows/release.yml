@@ -1,0 +1,85 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install cross-compilation tools
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+
+      - name: Build
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+          BUILD_TARGET: ${{ matrix.target }}
+        run: cargo build --release --target "$BUILD_TARGET"
+
+      - name: Package (unix)
+        if: runner.os != 'Windows'
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+        run: |
+          cd "target/${BUILD_TARGET}/release"
+          tar czf "../../../emby-${BUILD_TARGET}.tar.gz" emby
+          cd ../../..
+
+      - name: Package (windows)
+        if: runner.os == 'Windows'
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+        run: |
+          cd "target/$env:BUILD_TARGET/release"
+          7z a "../../../emby-$env:BUILD_TARGET.zip" emby.exe
+          cd ../../..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: emby-${{ matrix.target }}
+          path: emby-${{ matrix.target }}.*
+
+  release:
+    name: Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: emby-*
+          generate_release_notes: true

@@ -1,0 +1,25 @@
+{
+  "Items": [
+    {
+      "Name": "The One With the Embryos",
+      "Id": "nextup-001",
+      "Type": "Episode",
+      "SeriesName": "Friends",
+      "IndexNumber": 12,
+      "ParentIndexNumber": 4,
+      "PremiereDate": "1998-01-15T00:00:00.0000000Z",
+      "RunTimeTicks": 13200000000
+    },
+    {
+      "Name": "Ozymandias",
+      "Id": "nextup-002",
+      "Type": "Episode",
+      "SeriesName": "Breaking Bad",
+      "IndexNumber": 14,
+      "ParentIndexNumber": 5,
+      "PremiereDate": "2013-09-15T00:00:00.0000000Z",
+      "RunTimeTicks": 28800000000
+    }
+  ],
+  "TotalRecordCount": 2
+}

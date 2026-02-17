@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "josh",
+    "Id": "abc123",
+    "Policy": {
+      "IsAdministrator": true
+    }
+  },
+  {
+    "Name": "bob",
+    "Id": "def456",
+    "Policy": {
+      "IsAdministrator": false
+    }
+  }
+]

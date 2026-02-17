@@ -1,0 +1,25 @@
+{
+  "Items": [
+    {
+      "Name": "New Episode",
+      "Id": "upcoming-001",
+      "Type": "Episode",
+      "SeriesName": "The Last of Us",
+      "IndexNumber": 1,
+      "ParentIndexNumber": 2,
+      "PremiereDate": "2025-04-13T00:00:00.0000000Z",
+      "RunTimeTicks": 36000000000
+    },
+    {
+      "Name": "Season Premiere",
+      "Id": "upcoming-002",
+      "Type": "Episode",
+      "SeriesName": "Severance",
+      "IndexNumber": 1,
+      "ParentIndexNumber": 3,
+      "PremiereDate": "2025-05-01T00:00:00.0000000Z",
+      "RunTimeTicks": 30000000000
+    }
+  ],
+  "TotalRecordCount": 2
+}
