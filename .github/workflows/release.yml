@@ -6,6 +6,7 @@ on:
       - "v*"
 
 permissions:
+  actions: write
   contents: write
 
 jobs:
@@ -50,9 +51,12 @@ jobs:
         env:
           BUILD_TARGET: ${{ matrix.target }}
         run: |
-          cd "target/${BUILD_TARGET}/release"
-          tar czf "../../../emby-${BUILD_TARGET}.tar.gz" emby
-          cd ../../..
+          staging="emby-${BUILD_TARGET}"
+          mkdir -p "$staging/man/man1"
+          cp "target/${BUILD_TARGET}/release/emby" "$staging/"
+          cp man/man1/emby.1 "$staging/man/man1/"
+          tar czf "$staging.tar.gz" -C "$staging" .
+          rm -rf "$staging"
 
       - name: Package (windows)
         if: runner.os == 'Windows'
@@ -74,12 +78,25 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
+          path: artifacts
           merge-multiple: true
 
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          files: emby-*
+          files: artifacts/*
           generate_release_notes: true
+
+      - name: Update homebrew tap
+        run: |
+          gh workflow run bump-formula.yml \
+            -f formula=emby-cli \
+            -f version=${GITHUB_REF##refs/tags/} \
+            -R itspriddle/homebrew-brews
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
