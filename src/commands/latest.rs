@@ -14,7 +14,7 @@ pub fn run(args: &LatestArgs) -> Result<()> {
 
     let mut query = vec![
         ("Limit", limit.as_str()),
-        ("Fields", "DateCreated,Overview"),
+        ("Fields", "DateCreated,Overview,ProductionYear"),
         ("GroupItems", "true"),
     ];
 
